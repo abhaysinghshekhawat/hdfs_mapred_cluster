@@ -1,0 +1,14 @@
+- hosts: all
+  roles:
+          - role: hadoop_master
+            when: inventory_hostname in groups['tag_name_hadoop_master']
+
+          - role: hadoop_slave
+            when: inventory_hostname in groups['tag_name_hadoop_worker']
+
+          - role: jobtracker
+            when: inventory_hostname in groups['tag_name_jobtracker']
+          
+          - role: tasktracker
+            when: inventory_hostname in groups['tag_name_tasktracker']
+

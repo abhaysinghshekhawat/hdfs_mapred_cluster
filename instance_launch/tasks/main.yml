@@ -1,0 +1,62 @@
+- name: launching master instance over the aws
+  ec2:
+                  region: us-east-1
+                  image: ami-0b0024012184d4b09
+                  instance_type: t2.micro
+                  assign_public_ip: yes
+                  vpc_subnet_id: subnet-05a6421b137ef40bd
+                  group: mysecuritygroup
+                  key_name: mykeyaws
+                  instance_tags:
+                          name: hadoop_master
+                  state: present
+                  aws_access_key: "{{ access_key }}"
+                  aws_secret_key: "{{ secret_key }}"
+
+- name: launching 2 worker nodes over the aws 
+  ec2:
+                  region: us-east-1
+                  image: ami-0b0024012184d4b09
+                  instance_type: t2.micro
+                  assign_public_ip: yes
+                  vpc_subnet_id: subnet-05a6421b137ef40bd
+                  group: mysecuritygroup
+                  key_name: mykeyaws
+                  instance_tags:
+                          name: hadoop_worker
+                  state: present
+                  count: 2
+                  aws_access_key: "{{ access_key }}"
+                  aws_secret_key: "{{ secret_key }}"
+
+- name: launching jobtracker instance over the aws
+  ec2:
+                  region: us-east-1
+                  image: ami-0b0024012184d4b09
+                  instance_type: t2.micro
+                  assign_public_ip: yes
+                  vpc_subnet_id: subnet-05a6421b137ef40bd
+                  group: mysecuritygroup
+                  key_name: mykeyaws
+                  instance_tags:
+                          name: jobtracker
+                  state: present
+                  aws_access_key: "{{ access_key }}"
+                  aws_secret_key: "{{ secret_key }}"
+
+- name: launching 2 tasktracker nodes over the aws
+  ec2:
+                  region: us-east-1
+                  image: ami-0b0024012184d4b09
+                  instance_type: t2.micro
+                  assign_public_ip: yes
+                  vpc_subnet_id: subnet-05a6421b137ef40bd
+                  group: mysecuritygroup
+                  key_name: mykeyaws
+                  instance_tags:
+                          name: tasktracker
+                  state: present
+                  count: 2
+                  aws_access_key: "{{ access_key }}"
+                  aws_secret_key: "{{ secret_key }}"
+
